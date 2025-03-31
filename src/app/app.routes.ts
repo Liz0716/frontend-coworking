@@ -15,5 +15,9 @@ export const routes: Routes = [
   {
     path: 'registro',
     loadComponent: () => import('./public/registro/registro.component').then(c => c.RegistroComponent)
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./private/dashboard/dashboard.component').then(c => c.DashboardComponent)
   }
 ];
