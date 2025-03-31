@@ -1,0 +1,24 @@
+<div class="flex flex-col md:flex-row">
+  <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+    <form [formGroup]="Formulario" (ngSubmit)="onSubmit()">
+      <div class="flex flex-col gap-2">
+          <label for="email">Correo</label>
+          <input pInputText id="email" formControlName="email" type="text" />
+      </div>
+      <div class="flex flex-col gap-2">
+          <label for="password">Contraseña</label>
+          <p-password id="password" [toggleMask]="true" formControlName="password" class="" />
+      </div>
+      <div class="flex mt-4 ">
+          <p-button type="submit" label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" />
+      </div>
+    </form>
+  </div>
+  <div class="w-full md:w-2/12">
+      <p-divider layout="vertical" class="!hidden md:!flex"><b>OR</b></p-divider>
+      <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
+  </div>
+  <div class="w-full md:w-5/12 flex items-center justify-center py-5">
+      <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" (onClick)="formularioRegistro()"/>
+  </div>
+</div>

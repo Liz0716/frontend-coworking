@@ -6,9 +6,6 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 
 
-
-
-
 @Component({
   selector: 'app-registro',
   imports: [FormsModule, ReactiveFormsModule, FloatLabel,InputTextModule,ButtonModule,PasswordModule],
