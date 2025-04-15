@@ -1,0 +1,42 @@
+<p-toast position="top-right"></p-toast>
+
+<form [formGroup]="Formuario" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto bg-gray-300 shadow-lg rounded-xl p-8 mt-8 space-y-6">
+
+
+  <div class="space-y-4">
+    <p-floatLabel>
+      <input pInputText id="nombre" formControlName="nombre" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+      <label for="nombre">Nombre</label>
+    </p-floatLabel>
+  </div>
+
+  <div class="space-y-4">
+    <p-floatLabel>
+      <input pInputText type="number" id="capacidad" formControlName="capacidad" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+      <label for="capacidad">Capacidad</label>
+    </p-floatLabel>
+  </div>
+
+
+  <div class="space-y-4">
+    <p-floatLabel>
+      <input pInputText type="number" step="0.01" id="precio_hora" formControlName="precio_hora" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+      <label for="precio_hora">Precio por hora</label>
+    </p-floatLabel>
+  </div>
+
+  <div class="space-y-4 flex items-center justify-between">
+    <label for="disponibilidad" class="text-gray-700 text-base font-medium">Disponibilidad</label>
+    <p-toggleSwitch
+      id="disponibilidad"
+      formControlName="disponibilidad"
+      class="ng-dirty ng-invalid"
+    >
+    </p-toggleSwitch>
+  </div>
+
+  <button type="submit" class="text-white w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+    Guardar
+  </button>
+
+</form>

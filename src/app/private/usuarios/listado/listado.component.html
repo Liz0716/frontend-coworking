@@ -1,0 +1,47 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right"></p-toast>
+<p-table
+  [value]="usuarios"
+  showGridlines
+  [paginator]="true"
+  [rows]="5"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-usuario>
+    <tr>
+      <td>{{ usuario.name }}</td>
+      <td>{{ usuario.email }}</td>
+      <td>{{ usuario.rol === 1 ? 'Administrador' : 'Cliente' }}</td>
+      <td>
+        <p-button
+          icon="pi pi-pencil"
+          severity="info"
+          rounded
+          [style]="{ width: '2rem', height: '2rem' }"
+          (click)="editarUsuario(usuario)"
+          tooltip="Editar"
+        ></p-button>
+        <p-button
+        icon="pi pi-delete-left"
+        severity="danger"
+        rounded
+        [style]="{ width: '2rem', height: '2rem', left: '0.5rem' }"
+        (click)="eliminarUsuario(usuario)"
+        tooltip="Eliminar"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<router-outlet></router-outlet>

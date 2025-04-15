@@ -8,16 +8,17 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './shared/services/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch(),withInterceptors([])),
+    provideHttpClient(withFetch(),withInterceptors([authInterceptor])),
     provideAnimationsAsync(),
         providePrimeNG({
             theme: {
                 preset: Aura,
                 options: {
-                  darkModeSelector: false || 'none'
+                  darkModeSelector: true || 'none'
               }
             }
         }),

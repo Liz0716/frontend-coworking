@@ -1,30 +1,76 @@
-<p-megamenu [model]="items" [style]="{ 'border-radius': '3rem', display: 'flex' }" styleClass="p-4 bg-surface-0 dark:bg-surface-900">
-  <ng-template #start>
-      <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8">
-          <path d="..." fill="var(--primary-color)" />
-      </svg>
-  </ng-template>
-  <ng-template #item let-item>
-      <a *ngIf="item.root" pRipple class="flex items-center cursor-pointer px-4 py-2 overflow-hidden relative font-semibold text-lg uppercase" style="border-radius: 2rem">
-          <i [ngClass]="item.icon"></i>
-          <span class="ml-2">{{ item.label }}</span>
-      </a>
-      <a *ngIf="!item.root && !item.image" class="flex items-center p-4 cursor-pointer mb-2 gap-2">
-          <span class="inline-flex items-center justify-center rounded-full bg-primary text-primary-contrast w-12 h-12">
-              <i [ngClass]="item.icon + ' text-lg'"></i>
-          </span>
-          <span class="inline-flex flex-col gap-1">
-              <span class="font-medium text-lg text-surface-900 dark:text-surface-0">{{ item.label }}</span>
-              <span class="whitespace-nowrap">{{ item.subtext }}</span>
-          </span>
-      </a>
-      <div *ngIf="item.image" class="flex flex-col items-start gap-4">
-          <img [src]="item.image" alt="megamenu-demo" class="w-full" />
-          <span>{{ item.subtext }}</span>
-          <p-button [label]="item.label" [outlined]="true"></p-button>
-      </div>
-  </ng-template>
-  <ng-template #end>
-      <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
-  </ng-template>
-</p-megamenu>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+  <div class="flex justify-center" *ngIf="datos">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Reservaciones del Día" class="w-full h-40 object-cover" src="https://img.freepik.com/vector-premium/icono-signo-documento-lista-verificacion-estilo-comic-ilustracion-dibujos-animados-vector-encuesta-sobre-fondo-blanco-aislado-efecto-salpicadura-concepto-negocio-banner-marca-verificacion_157943-8614.jpg" />
+      </ng-template>
+      <ng-template #title>Reservaciones del Día</ng-template>
+      <ng-template #subtitle>{{ datos.reservas_hoy }}</ng-template>
+    </p-card>
+  </div>
+
+  <div class="flex justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Pendientes" class="w-full h-40 object-cover" src="https://static.vecteezy.com/system/resources/previews/016/130/470/non_2x/check-in-reception-icon-in-comic-style-booking-service-cartoon-illustration-on-white-isolated-background-hotel-reservation-splash-effect-business-concept-vector.jpg" />
+      </ng-template>
+      <ng-template #title>Reservas Pendientes</ng-template>
+      <ng-template #subtitle>{{ datos.reservas_pendientes }}</ng-template>
+    </p-card>
+  </div>
+
+  <div class="flex justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Usuarios" class="w-full h-40 object-cover" src="https://static.vecteezy.com/system/resources/previews/016/136/813/non_2x/people-communication-icon-in-comic-style-people-cartoon-illustration-on-white-background-partnership-splash-effect-business-concept-vector.jpg" />
+      </ng-template>
+      <ng-template #title>Usuarios Registrados</ng-template>
+      <ng-template #subtitle>{{ datos.usuarios }}</ng-template>
+    </p-card>
+  </div>
+
+  <div class="flex justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Espacios" class="w-full h-40 object-cover" src="https://img.freepik.com/vector-premium/calendario-icono-reloj-estilo-comic-ilustracion-vector-dibujos-animados-agenda-sobre-fondo-blanco-aislado-concepto-negocio-efecto-salpicadura-planificador-tiempo-programacion_157943-19061.jpg" />
+      </ng-template>
+      <ng-template #title>Espacios Existentes</ng-template>
+      <ng-template #subtitle>{{ datos.espacios }}</ng-template>
+    </p-card>
+  </div>
+
+  <div class="flex justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Ingreso" class="w-full h-40 object-cover" src="https://img.freepik.com/vector-premium/personas-icono-flecha-crecimiento-estilo-comico-ilustracion-vector-dibujos-animados-estrategia-trabajo-sobre-fondo-blanco-aislado-concepto-negocio-efecto-salpicadura-entrenamiento-oficina_157943-13637.jpg?w=360" />
+      </ng-template>
+      <ng-template #title>Ingreso del Mes</ng-template>
+      <ng-template #subtitle>{{ datos.ingreso_mes | currency:'MXN':'symbol':'1.2-2' }}</ng-template>
+    </p-card>
+  </div>
+
+  <div class="flex justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Porcentaje" class="w-full h-40 object-cover" src="https://img.freepik.com/vector-premium/personas-icono-flecha-crecimiento-estilo-comico-ilustracion-vector-dibujos-animados-estrategia-trabajo-sobre-fondo-blanco-aislado-concepto-negocio-efecto-salpicadura-entrenamiento-oficina_157943-12574.jpg?w=360" />
+      </ng-template>
+      <ng-template #title>% de Reservas del Mes</ng-template>
+      <ng-template #subtitle>{{ datos.porcentaje_mes }}%</ng-template>
+    </p-card>
+  </div>
+</div>
+
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-5">
+  <div class="card mt-6 mx-6 w-[400px] h-[300px]">
+    <p-chart type="pie" [data]="ingresosData" [options]="ingresosOptions" />
+  </div>
+
+  <div class="card mt-6 mx-6 w-[400px] h-[300px]">
+    <p-chart type="pie" [data]="reservasData" [options]="reservasOptions" />
+  </div>
+
+  <div class="card mt-6 mx-6 w-[400px] h-[300px]">
+    <p-chart type="pie" [data]="registrosData" [options]="registrosOptions" />
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+  <ng-container *ngFor="let reserva of reservas">
+    <p-card [style]="{ width: '100%', overflow: 'hidden' }" class="mb-5 shadow-md">
+      <ng-template #header>
+        <img
+          alt="Espacio reservado"
+          class="w-full object-cover h-48 rounded-t-xl"
+          src="https://static8.depositphotos.com/1030568/967/v/450/depositphotos_9673953-stock-illustration-cabinet-office-in-blue.jpg"
+        />
+      </ng-template>
+
+      <ng-template #title>
+        Reservacion en: {{ reserva.espacio.nombre }}
+      </ng-template>
+
+      <ng-template #subtitle>
+        Usuario: {{ reserva.usuario.name }}
+      </ng-template>
+
+      <div class="text-sm text-gray-700 space-y-1 mt-3">
+        <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+        <p><strong>Hora inicio:</strong> {{ reserva.hora_inicio }}</p>
+        <p><strong>Hora fin:</strong> {{ reserva.hora_fin }}</p>
+        <p><strong>Estado:</strong> {{ reserva.estado }}</p>
+        <p><strong>Precio:</strong> ${{ reserva.precio }}</p>
+      </div>
+
+      <ng-template #footer>
+        <div class="flex justify-end mt-4">
+          <p-button
+            *ngIf="rol === 1"
+            label="Editar"
+            icon="pi pi-pencil"
+            styleClass="p-button-sm p-button-warn"
+            (click)="editarReserva(reserva)"
+          ></p-button>
+
+          <p-button
+            *ngIf="rol === 0 && reserva.estado !== 'cancelada'"
+            label="Cancelar"
+            icon="pi pi-times"
+            styleClass="p-button-sm p-button-danger"
+            (click)="cancelarReserva(reserva)"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </ng-container>
+</div>
+<router-outlet></router-outlet>
+

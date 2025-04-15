@@ -1,0 +1,55 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right"></p-toast>
+
+<div class="flex gap-4 mb-4 mt-4 ml-5">
+  <input pInputText type="number" [(ngModel)]="filtroCapacidad" placeholder="Capacidad Minima" class="p-inputtext-sm w-48" />
+  <input pInputText type="number" [(ngModel)]="filtroPrecio" placeholder="Precio Maximo" class="p-inputtext-sm w-48" />
+  <button pButton label="Filtrar" icon="pi pi-filter" (click)="filtrarEspacios()"></button>
+</div>
+
+<p-table
+  [value]="espacios"
+  showGridlines
+  [paginator]="true"
+  [rows]="5"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Capacidad</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-espacio>
+    <tr>
+      <td>{{ espacio.nombre }}</td>
+      <td>{{ espacio.capacidad }}</td>
+      <td>{{ espacio.precio_hora | currency:'MXN':'symbol':'1.2-2' }}</td>
+
+      <td>
+        <p-button
+          icon="pi pi-pencil"
+          severity="info"
+          rounded
+          [style]="{ width: '2rem', height: '2rem' }"
+          (click)="editarEspacio(espacio)"
+          tooltip="Editar"
+        ></p-button>
+        <p-button
+        icon="pi pi-delete-left"
+        severity="danger"
+        rounded
+        [style]="{ width: '2rem', height: '2rem', left: '0.5rem' }"
+        (click)="eliminarEspacio(espacio)"
+        tooltip="Eliminar"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<router-outlet></router-outlet>
